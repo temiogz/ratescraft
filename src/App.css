@@ -1,6 +1,4 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+*, html, body{ box-sizing: border-box; margin: 0; padding: 0}
+* { user-select: none}
+::-webkit-scrollbar {background: #faf9f9; width: 6px; height: 8px}
+::-webkit-scrollbar-thumb {background: #4338ca; width: 4px; border-radius: 5px}
