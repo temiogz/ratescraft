@@ -1,13 +1,14 @@
-import { FC } from 'react';
 import "./App.css";
+import LandingPage from "./pages/LandingPage";
+import ConversionPage from "./pages/ConversionPage";
 
-
-const App: FC = () => {
+const App = () => {
   return (
-    <div className="text-2xl text-slate-500">
-      <h1>web</h1>
+    <div>
+      <LandingPage />
+      <ConversionPage />
     </div>
   );
-}
+};
 
 export default App;
