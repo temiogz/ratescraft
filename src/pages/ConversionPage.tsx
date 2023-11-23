@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import axios from "axios";
+import { FaExchangeAlt } from 'react-icons/fa';
 import {
   currencies,
   exchangerateAPI,
@@ -102,8 +103,11 @@ const ConversionPage: FC = () => {
 
         <button
           onClick={handleConvert}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full text-lg cursor-pointer focus:outline-none"
+          className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-2 px-6 rounded-full text-lg cursor-pointer focus:outline-none transition duration-300 ease-in-out flex items-center"
         >
+          <span className="mr-2">
+            <FaExchangeAlt />
+          </span>
           {cpConvertButtonText}
         </button>
       </div>
