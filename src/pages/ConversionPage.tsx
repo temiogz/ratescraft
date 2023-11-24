@@ -14,6 +14,7 @@ const ConversionPage: FC = () => {
   const [toCurrency, setToCurrency] = useState<string>("EUR");
   const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
   const [lastConversion, setLastConversion] = useState<{ from: string; to: string; amount: number } | null>(null);
+  const [displayAmount, setDisplayAmount] = useState<number | undefined>();
 
   const fetchRatesFromExchangeRateAPI = async () => {
     try {
@@ -21,8 +22,8 @@ const ConversionPage: FC = () => {
       const response = await axios.get(url);
       const exchangeRate = response.data.conversion_rates[toCurrency];
       setConvertedAmount(amount * exchangeRate);
-    } catch (e) {
-      console.error("Error fetching exchange rates:", e);
+    } catch (err) {
+      console.error("Error: ", err);
     }
   };
 
@@ -41,7 +42,6 @@ const ConversionPage: FC = () => {
     setToCurrency(e.target.value);
   };
 
-  /* invoke ONLY on button click */
   const handleConvert = React.useCallback(() => {
     const currentConversion = { from: fromCurrency, to: toCurrency, amount: amount };
     if (
@@ -54,6 +54,7 @@ const ConversionPage: FC = () => {
     }
 
     fetchRatesFromExchangeRateAPI();
+    setDisplayAmount(amount);
     setLastConversion(currentConversion);
   }, [fromCurrency, toCurrency, amount, lastConversion]);
 
@@ -66,9 +67,17 @@ const ConversionPage: FC = () => {
         <h2 className="text-4xl font-bold font-serif text-slate-900 mb-6">
           {cpHeaderTitle}
         </h2>
+
+        <div className={`mt-5 mb-7 overflow-hidden ease-in-out duration-300 ${convertedAmount !== null ? 'h-auto' : 'h-7'}`}>
+          {convertedAmount !== null && (
+            <p className="text-white">
+              <span className="font-bold font-serif">{displayAmount}</span> <span className="text-gray-500">{fromCurrency}</span> converted to <span className="font-bold">{convertedAmount.toFixed(2)}</span> <span className="text-gray-500">{toCurrency}</span>
+            </p>
+          )}
+        </div>
         <div className="flex items-center mb-6">
           <input
-            type="number"
+            type="text"
             value={amount}
             onChange={handleAmountChange}
             className="w-32 md:w-40 p-2 border border-blue-300 rounded-md mr-4 focus:outline-none focus:border-blue-500 text-gray-800"
