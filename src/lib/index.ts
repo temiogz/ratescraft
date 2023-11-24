@@ -8,4 +8,4 @@ export {
   cpHeaderTitle,
   cpConvertButtonText,
   currencyNameMapping,
-} from './constants';
+} from "./constants";

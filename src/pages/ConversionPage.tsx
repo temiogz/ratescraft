@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import axios from "axios";
-import { FaExchangeAlt } from 'react-icons/fa';
+import { FaExchangeAlt } from "react-icons/fa";
 import {
   currencies,
   exchangerateAPI,
@@ -13,7 +13,11 @@ const ConversionPage: FC = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("USD");
   const [toCurrency, setToCurrency] = useState<string>("EUR");
   const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
-  const [lastConversion, setLastConversion] = useState<{ from: string; to: string; amount: number } | null>(null);
+  const [lastConversion, setLastConversion] = useState<{
+    from: string;
+    to: string;
+    amount: number;
+  } | null>(null);
   const [displayAmount, setDisplayAmount] = useState<number | undefined>();
 
   const fetchRatesFromExchangeRateAPI = async () => {
@@ -43,7 +47,11 @@ const ConversionPage: FC = () => {
   };
 
   const handleConvert = React.useCallback(() => {
-    const currentConversion = { from: fromCurrency, to: toCurrency, amount: amount };
+    const currentConversion = {
+      from: fromCurrency,
+      to: toCurrency,
+      amount: amount,
+    };
     if (
       lastConversion &&
       currentConversion.from === lastConversion.from &&
@@ -68,10 +76,17 @@ const ConversionPage: FC = () => {
           {cpHeaderTitle}
         </h2>
 
-        <div className={`mt-5 mb-7 overflow-hidden ease-in-out duration-300 ${convertedAmount !== null ? 'h-auto' : 'h-7'}`}>
+        <div
+          className={`mt-5 mb-7 overflow-hidden ease-in-out duration-300 ${
+            convertedAmount !== null ? "h-auto" : "h-7"
+          }`}
+        >
           {convertedAmount !== null && (
             <p className="text-white">
-              <span className="font-bold font-serif">{displayAmount}</span> <span className="text-gray-500">{fromCurrency}</span> converted to <span className="font-bold">{convertedAmount.toFixed(2)}</span> <span className="text-gray-500">{toCurrency}</span>
+              <span className="font-bold font-serif">{displayAmount}</span>{" "}
+              <span className="text-gray-500">{fromCurrency}</span> converted to{" "}
+              <span className="font-bold">{convertedAmount.toFixed(2)}</span>{" "}
+              <span className="text-gray-500">{toCurrency}</span>
             </p>
           )}
         </div>

@@ -24,4 +24,3 @@ export class HexToTextConverter {
     return String.fromCharCode(...hexPairs.map((byte) => parseInt(byte, 16)));
   }
 }
-
