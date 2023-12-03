@@ -1,12 +1,12 @@
 import "./App.css";
-import LandingPage from "./pages/LandingPage";
-import ConversionPage from "./pages/ConversionPage";
+import Landing from "./components/Landing";
+import ConversionSection from "./components/ConversionSection";
 
 const App = () => {
   return (
     <div>
-      <LandingPage />
-      <ConversionPage />
+      <Landing />
+      <ConversionSection />
     </div>
   );
 };

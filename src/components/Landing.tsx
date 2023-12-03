@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { Link } from "react-scroll";
-import { lpHeaderTitle, lpHeroButtonText, lpHeroText } from "../lib";
+import { HexToTextConverter } from "../lib/utils";
+import { APP_NAME, lpHeroButtonText, lpHeroText } from "../lib";
 
-const LandingPage: FC = () => {
+const Landing: FC = () => {
   return (
     <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600 min-h-screen flex items-center justify-center text-white">
       <div className="text-center">
         <h1 className="text-5xl font-extrabold mb-6 tracking-wide">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 font-serif">
-            {lpHeaderTitle}
+            {HexToTextConverter.hex2t(APP_NAME)}
           </span>
         </h1>
         <p className="text-lg text-gray-300 mb-8 leading-relaxed">
@@ -27,4 +28,4 @@ const LandingPage: FC = () => {
   );
 };
 
-export default LandingPage;
+export default Landing;

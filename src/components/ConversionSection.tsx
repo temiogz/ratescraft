@@ -2,13 +2,13 @@ import React, { FC, useState } from "react";
 import axios from "axios";
 import { FaExchangeAlt } from "react-icons/fa";
 import {
-  currencies,
   exchangerateAPI,
   cpConvertButtonText,
   cpHeaderTitle,
+  currencyNameMapping
 } from "../lib";
 
-const ConversionPage: FC = () => {
+const ConversionSection: FC = () => {
   const [amount, setAmount] = useState<number>(1);
   const [fromCurrency, setFromCurrency] = useState<string>("USD");
   const [toCurrency, setToCurrency] = useState<string>("EUR");
@@ -20,7 +20,8 @@ const ConversionPage: FC = () => {
   } | null>(null);
   const [displayAmount, setDisplayAmount] = useState<number | undefined>();
 
-  const fetchRatesFromExchangeRateAPI = async () => {
+
+  const convertAndUpdateAmount  = async () => {
     try {
       const url = `${exchangerateAPI}/${fromCurrency}`;
       const response = await axios.get(url);
@@ -61,7 +62,7 @@ const ConversionPage: FC = () => {
       return;
     }
 
-    fetchRatesFromExchangeRateAPI();
+    convertAndUpdateAmount ();
     setDisplayAmount(amount);
     setLastConversion(currentConversion);
   }, [fromCurrency, toCurrency, amount, lastConversion]);
@@ -100,10 +101,12 @@ const ConversionPage: FC = () => {
           <select
             value={fromCurrency}
             onChange={handleFromCurrencyChange}
-            className="w-32 md:w-40 p-2 border border-blue-300 rounded-md focus:outline-none focus:border-blue-500 text-gray-800"
+            className="w-44 md:w-40 p-2 border border-blue-300 rounded-md focus:outline-none focus:border-blue-500 text-gray-800 max-w-md"
           >
-            {currencies.map((code, ix) => (
-              <option key={ix}>{code}</option>
+            {Object.entries(currencyNameMapping).map(([currencyCode, currencyName], ix) => (
+              <option key={ix} value={currencyCode}>
+                {currencyName}
+              </option>
             ))}
           </select>
         </div>
@@ -119,8 +122,10 @@ const ConversionPage: FC = () => {
             onChange={handleToCurrencyChange}
             className="w-32 md:w-40 p-2 border border-blue-300 rounded-md focus:outline-none focus:border-blue-500 text-gray-800"
           >
-            {currencies.map((code, ix) => (
-              <option key={ix}>{code}</option>
+            {Object.entries(currencyNameMapping).map(([currencyCode, currencyName], ix) => (
+              <option key={ix} value={currencyCode}>
+                {currencyName}
+              </option>
             ))}
           </select>
         </div>
@@ -139,4 +144,4 @@ const ConversionPage: FC = () => {
   );
 };
 
-export default ConversionPage;
+export default ConversionSection;

@@ -1,7 +1,7 @@
 import { CurrencyNameMappingType } from "./types";
 const key: string = import.meta.env.VITE_XCHG_API_KEY;
 
-export const APP_NAME = "Currency Converter";
+export const APP_NAME = "0x43757272656E637920436F6E766572746572";
 export const exchangerateAPI = `https://v6.exchangerate-api.com/v6/${key}/latest`;
 
 export const currencies: Array<string> = [
@@ -87,15 +87,14 @@ export const currencyNameMapping: Readonly<CurrencyNameMappingType> = {
   DJF: "Djiboutian Franc",
   DKK: "Danish Krone",
   DOP: "Dominican Peso",
-  EUR: "Euro",
+  EUR: "European Euro",
 };
 
-/* Landing Page */
-export const lpHeaderTitle = "Currency Converter";
+/* Landing */
 export const lpHeroText =
   "Convert currency values based on present day exchange rate with this simple currency conversion tool.";
 export const lpHeroButtonText = "Get Started";
 
-/* Conversion Page */
+/* Conversion section */
 export const cpHeaderTitle = "Currency Conversion";
 export const cpConvertButtonText = "Convert";

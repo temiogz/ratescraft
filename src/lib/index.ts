@@ -2,7 +2,6 @@ export {
   APP_NAME,
   exchangerateAPI,
   currencies,
-  lpHeaderTitle,
   lpHeroText,
   lpHeroButtonText,
   cpHeaderTitle,
