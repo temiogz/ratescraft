@@ -69,7 +69,7 @@ const ConversionSection: FC = () => {
   return (
     <div
       id="conversionSection"
-      className="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 min-h-screen flex items-center justify-center"
+      className="bg-slate-700 min-h-screen flex items-center justify-center"
     >
       <div className="flex flex-col items-center">
         <h2 className="text-4xl font-bold font-serif text-slate-900 mb-6">
@@ -82,11 +82,11 @@ const ConversionSection: FC = () => {
           }`}
         >
           {convertedAmount !== null && (
-            <p className="text-white">
-              <span className="font-bold font-serif">{displayAmount}</span>{" "}
-              <span className="text-gray-500">{fromCurrency}</span> converted to{" "}
-              <span className="font-bold">{convertedAmount.toFixed(2)}</span>{" "}
-              <span className="text-gray-500">{toCurrency}</span>
+            <p className="text-white font-bold font-serif">
+              {displayAmount}{" "}
+              <span className="text-slate-400 mr-4">{fromCurrency}</span>
+              {" → "} <span className="ml-4">{convertedAmount.toFixed(2)}</span>{" "}
+              <span className="text-slate-400">{toCurrency}</span>
             </p>
           )}
         </div>
