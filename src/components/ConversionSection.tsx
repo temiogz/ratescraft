@@ -5,7 +5,7 @@ import {
   exchangerateAPI,
   cpConvertButtonText,
   cpHeaderTitle,
-  currencyNameMapping
+  currencyNameMapping,
 } from "../lib";
 
 const ConversionSection: FC = () => {
@@ -20,8 +20,7 @@ const ConversionSection: FC = () => {
   } | null>(null);
   const [displayAmount, setDisplayAmount] = useState<number | undefined>();
 
-
-  const convertAndUpdateAmount  = async () => {
+  const convertAndUpdateAmount = async () => {
     try {
       const url = `${exchangerateAPI}/${fromCurrency}`;
       const response = await axios.get(url);
@@ -62,7 +61,7 @@ const ConversionSection: FC = () => {
       return;
     }
 
-    convertAndUpdateAmount ();
+    convertAndUpdateAmount();
     setDisplayAmount(amount);
     setLastConversion(currentConversion);
   }, [fromCurrency, toCurrency, amount, lastConversion]);
@@ -103,11 +102,13 @@ const ConversionSection: FC = () => {
             onChange={handleFromCurrencyChange}
             className="w-44 md:w-40 p-2 border border-blue-300 rounded-md focus:outline-none focus:border-blue-500 text-gray-800 max-w-md"
           >
-            {Object.entries(currencyNameMapping).map(([currencyCode, currencyName], ix) => (
-              <option key={ix} value={currencyCode}>
-                {currencyName}
-              </option>
-            ))}
+            {Object.entries(currencyNameMapping).map(
+              ([currencyCode, currencyName], ix) => (
+                <option key={ix} value={currencyCode}>
+                  {currencyName}
+                </option>
+              )
+            )}
           </select>
         </div>
         <div className="flex items-center mb-6">
@@ -122,11 +123,13 @@ const ConversionSection: FC = () => {
             onChange={handleToCurrencyChange}
             className="w-32 md:w-40 p-2 border border-blue-300 rounded-md focus:outline-none focus:border-blue-500 text-gray-800"
           >
-            {Object.entries(currencyNameMapping).map(([currencyCode, currencyName], ix) => (
-              <option key={ix} value={currencyCode}>
-                {currencyName}
-              </option>
-            ))}
+            {Object.entries(currencyNameMapping).map(
+              ([currencyCode, currencyName], ix) => (
+                <option key={ix} value={currencyCode}>
+                  {currencyName}
+                </option>
+              )
+            )}
           </select>
         </div>
 
